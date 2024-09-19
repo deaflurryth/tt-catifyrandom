@@ -4,6 +4,9 @@ export interface ITheme {
     BaseBackground: string
     BaseFontColor: string
     BaseSubFontColor: string
+    CatsBackground: string
+    CatsSolidWhite: string
+    CatsBlack: string
   }
   media: {
     xtra: string
@@ -31,9 +34,9 @@ export interface ITheme {
 }
 
 // тип css фрагмента
-import { RuleSet } from 'styled-components'
+import { RuleSet, CSSObject } from 'styled-components'
 
 // E - элемент enum
 export type StyledVariants<E extends string | number> = {
-  [key in E]?: RuleSet<any>
+  [key in E]?: RuleSet<CSSObject>
 }

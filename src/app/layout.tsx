@@ -9,9 +9,8 @@ import PageBackgroundComponent from '@/components/PageBackgroundComponent/PageBa
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'ITS FORGE',
-  description:
-    'We specialize in branding, ux/ui design, web and app development for business, corporations and dynamic startups',
+  title: 'Catify Random',
+  description: 'Тестовое задание со случайными фактами о кошках!',
 }
 
 export default function RootLayout({

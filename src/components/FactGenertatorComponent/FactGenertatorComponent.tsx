@@ -1,36 +1,28 @@
 'use client'
 
 import React from 'react'
-import useSWR from 'swr'
+import Image from 'next/image'
 import * as S from './styles'
-import { fetchCatFact } from '@/app/api/facts/fetchCatFact'
-
-// swr
-const fetcher = async () => await fetchCatFact()
+import CatAva from './assets/catavatar.png'
+import { useCatRandomFact } from '@context/CatFactContext'
 
 const FactGenertatorComponent: React.FC = () => {
-  const {
-    data: fact,
-    error,
-    isLoading,
-    isValidating,
-    mutate,
-  } = useSWR('cat-fact', fetcher)
-
-  // состояние загрузки
-  const loading = (!fact && !error) || isValidating
-
-  if (error)
-    return (
-      <S.FactText>Неудача, факт о котиках не загружен (っ °Д °;)っ</S.FactText>
-    )
+  const { generateRandomFact } = useCatRandomFact()
 
   return (
     <S.FactWrapper>
-      {loading ? <S.Spinner /> : <S.FactText>{fact}</S.FactText>}
-      <S.RefreshButton onClick={() => mutate()} disabled={loading}>
-        {loading ? 'Генерация...' : 'Сгенерировать'}
-      </S.RefreshButton>
+      <S.FactWrapperContainer>
+        <S.FactLeftContainer>
+          <S.StyledTitle>Random Fact</S.StyledTitle>
+          <S.StyledUnderTitle>Cats eat mice</S.StyledUnderTitle>
+          <S.RefreshButton onClick={generateRandomFact}>
+            Generate Random Fact
+          </S.RefreshButton>
+        </S.FactLeftContainer>
+        <S.FactRightContainer>
+          <Image alt="generated cat avatar" src={CatAva} />
+        </S.FactRightContainer>
+      </S.FactWrapperContainer>
     </S.FactWrapper>
   )
 }

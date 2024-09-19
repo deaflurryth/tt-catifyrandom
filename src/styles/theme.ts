@@ -4,7 +4,10 @@ export const CatsTheme: ITheme = {
   colors: {
     BaseBackground: 'hsla(39, 14%, 73%, 1)', //#c3bcaf
     BaseFontColor: 'hsla(0, 0%, 13%, 1)', //#222222
-    BaseSubFontColor: 'hsla(0, 0%, 77%, 1)', //#C3C3C3
+    BaseSubFontColor: 'hsla(41, 26%, 17%, 1)', //#362F20
+    CatsBackground: 'hsla(55, 9%, 70%, 1)', //#BAB9AD
+    CatsSolidWhite: 'hsla(43, 30%, 82%, 1)', //#DED6C2
+    CatsBlack: 'hsla(0, 0%, 7%, 1)', //#111111
   },
   media: {
     xtra: '(min-width: 1800px)',
