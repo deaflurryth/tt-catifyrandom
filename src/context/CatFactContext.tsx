@@ -29,7 +29,7 @@ export const CatRandomFactProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [factHistory, setFactHistory] = useState<string[]>([])
   const [currentIndex, setCurrentIndex] = useState<number>(-1)
-  const hasFetchedFact = useRef(false) // Флаг для предотвращения двойного запроса
+  const hasFetchedFact = useRef(false) // флаг для предотвращения двойного запроса
 
   const generateRandomFact = useCallback(async () => {
     try {
@@ -44,11 +44,11 @@ export const CatRandomFactProvider: React.FC<{ children: ReactNode }> = ({
     }
   }, [currentIndex])
 
-  // Вызов генерации факта при первой загрузке
+  // генерация при первой загрузке
   useEffect(() => {
     if (!hasFetchedFact.current && currentIndex === -1) {
       generateRandomFact()
-      hasFetchedFact.current = true // Отметить, что запрос был выполнен
+      hasFetchedFact.current = true // реф выполненного запроса
     }
   }, [generateRandomFact, currentIndex])
 
