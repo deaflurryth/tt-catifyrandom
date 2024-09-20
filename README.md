@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TT-CatifyRandom
 
-## Getting Started
+Проект собран для тестового задания Farsell
 
-First, run the development server:
+### Обзор
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Проект построен на Next.js, React, styled-components, React Context и swr. Представляет собой
+веб-приложение, с обращением к внешнему api `https://catfact.ninja`, для получения не только полного списка фактах о котах, но и случайных фактах. Такие случайные факты сохраняются в контексте.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Начало работы
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Клонируйте репозиторий: git clone https://github.com/deaflurryth/tt-catifyrandom.git
+2. Установите зависимоистис помощью `pnpm i`
+3. Запустите сервер разработки при помощи `pnpm dev`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Разработка
 
-## Learn More
+- Структура проекта:
+  - `publiс` - статические файлы Next.js (шрифты, изображения)
+  - `src` - исходный код проекта
+  - `/src/app` - корень проекта, лэйауты и страницы
+  - `/src/components` - директория компонентов проекта
+  - `/src/context` - контексты
+  - `/src/interfaces` - интерфейсы, типы
+  - `/src/styles` - стили, стиль провайдеры, темы
+- Используется ESLint со стандартной конфигурацией
+- Используется Tailwindcss для небольшой стилизации
+- Используется Prettier для форматирования и чистоты
+- Используются расширенные настройки tsconfig, с обновленными сокращенными путями и дополнительными расширениями
 
-To learn more about Next.js, take a look at the following resources:
+### Тестирование
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Для тестирования ничего не используется. В случае необходимости может быть добавлен Jest для юнит тестирования.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Развертывание
 
-## Deploy on Vercel
+1. Соберите проект при помощи `pnpm build`
+2. Запустите продкашен сервер при помощи `pnpm start`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+В проекте используется как ssr, так и csr. Для этого использована встроенная поддержка Next.js
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Пример
+
+Пример использования представлен на верселе, с которым можно ознакомиться по ссылке: `https://tt-catifyrandom.vercel.app/`
+
+## Благодарю за прочтения документации!

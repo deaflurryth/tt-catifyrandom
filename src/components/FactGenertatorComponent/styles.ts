@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
 
 export const FactWrapper = styled.section`
   display: flex;
@@ -8,7 +8,7 @@ export const FactWrapper = styled.section`
   padding: 20px;
   background-color: ${({ theme }) => theme.colors.BaseBackground};
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
   width: 100%;
   max-width: 1200px;
   margin: 20px auto;
@@ -44,7 +44,7 @@ export const RefreshButton = styled.button`
 
 export const FactWrapperContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   border: 1px solid ${({ theme }) => theme.colors.BaseSubFontColor};
   border-radius: 10px;
   width: 100%;
@@ -53,6 +53,11 @@ export const FactWrapperContainer = styled.div`
   flex-basis: 0;
   flex-grow: 1;
   flex-shrink: 2;
+  ${({ theme }) => css`
+    @media screen and ${theme.media.lg} {
+      flex-direction: row;
+    }
+  `}
 `
 export const FactLeftContainer = styled.div`
   border-right: 1px solid ${({ theme }) => theme.colors.BaseSubFontColor};
@@ -64,8 +69,13 @@ export const FactLeftContainer = styled.div`
   justify-content: center;
   gap: 10px;
   height: 100%;
-  width: 50%;
+  width: 100%;
   padding: 30px;
+  ${({ theme }) => css`
+    @media screen and ${theme.media.lg} {
+      width: 50%;
+    }
+  `}
 `
 export const StyledTitle = styled.h2`
   font-size: 32px;
@@ -80,13 +90,22 @@ export const FactRightContainer = styled.div`
   align-items: center;
   justify-content: center;
   background: ${({ theme }) => theme.colors.CatsBackground};
-  width: 50%;
+  width: 100%;
   border-radius: 10px;
   height: 100%;
   & > img {
-    max-width: 300px;
+    max-width: 100px;
     height: auto;
   }
+  ${({ theme }) => css`
+    @media screen and ${theme.media.lg} {
+      width: 50%;
+      & > img {
+        max-width: 300px;
+        height: auto;
+      }
+    }
+  `}
 `
 const spin = keyframes`
   0% { transform: rotate(0deg); }

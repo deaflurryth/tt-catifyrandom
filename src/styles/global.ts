@@ -80,8 +80,8 @@ export default createGlobalStyle`
 
     body {
         /* max-width: 1440px; */
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 5px;
+        padding-right: 5px;
         position: relative;
         overflow-x: hidden;
         overflow-y: auto;
@@ -89,6 +89,10 @@ export default createGlobalStyle`
         transition: 0.3s ease-out;
         /* background-image: url(${CatSample.src});
         background-repeat: repeat; */
+        @media screen and (min-width: 900px) {
+            padding-left: 15px;
+            padding-right: 15px;
+          }
     }
 
     nav ol,

@@ -1,5 +1,6 @@
 import React from 'react'
 import * as S from './styles'
+import SpinnerLoader from '../SpinnerLoader/SpinnerLoader'
 
 interface FactCardProps {
   fact: string
@@ -8,7 +9,7 @@ interface FactCardProps {
 const FactCardComponent: React.FC<FactCardProps> = ({ fact }) => {
   return (
     <S.CardWrapper>
-      <S.FactText>{fact}</S.FactText>
+      {fact ? <S.FactText>{fact}</S.FactText> : <SpinnerLoader />}
     </S.CardWrapper>
   )
 }

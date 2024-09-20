@@ -1,17 +1,27 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const CardWrapper = styled.div`
   padding: 20px;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.CatsSolidWhite};
+  border: 2px dashed ${({ theme }) => theme.colors.BaseSubFontColor};
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 200px;
+  height: 200px;
+  ${({ theme }) => css`
+    @media screen and ${theme.media.lg} {
+      height: 250px;
+    }
+  `}
 `
 
 export const FactText = styled.p`
-  font-size: 18px;
+  font-size: 12px;
   color: #333;
+  ${({ theme }) => css`
+    @media screen and ${theme.media.lg} {
+      font-size: 18px;
+    }
+  `}
 `

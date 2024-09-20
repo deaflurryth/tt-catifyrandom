@@ -14,6 +14,10 @@ import { fetchCatFact } from '@api/facts/fetchCatFact'
 interface CatRandomFactContextType {
   randomFact: string
   generateRandomFact: () => void
+  goToPreviousFact: () => void
+  goToNextFact: () => void
+  hasPreviousFact: boolean
+  hasNextFact: boolean
 }
 
 const CatRandomFactContext = createContext<
@@ -23,27 +27,54 @@ const CatRandomFactContext = createContext<
 export const CatRandomFactProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [randomFact, setRandomFact] = useState<string>('')
-  const hasFetchedFact = useRef(false)
+  const [factHistory, setFactHistory] = useState<string[]>([])
+  const [currentIndex, setCurrentIndex] = useState<number>(-1)
+  const hasFetchedFact = useRef(false) // Флаг для предотвращения двойного запроса
 
   const generateRandomFact = useCallback(async () => {
     try {
       const fact = await fetchCatFact()
-      setRandomFact(fact)
+      setFactHistory((prevHistory) => {
+        const newHistory = [...prevHistory.slice(0, currentIndex + 1), fact]
+        return newHistory
+      })
+      setCurrentIndex((prevIndex) => prevIndex + 1)
     } catch (error) {
       console.error('Ошибка получения факта о котиках:', error)
     }
-  }, [])
+  }, [currentIndex])
 
+  // Вызов генерации факта при первой загрузке
   useEffect(() => {
-    if (!hasFetchedFact.current) {
+    if (!hasFetchedFact.current && currentIndex === -1) {
       generateRandomFact()
-      hasFetchedFact.current = true
+      hasFetchedFact.current = true // Отметить, что запрос был выполнен
     }
-  }, [generateRandomFact])
+  }, [generateRandomFact, currentIndex])
+
+  const goToPreviousFact = useCallback(() => {
+    if (currentIndex > 0) {
+      setCurrentIndex((prevIndex) => prevIndex - 1)
+    }
+  }, [currentIndex])
+
+  const goToNextFact = useCallback(() => {
+    if (currentIndex < factHistory.length - 1) {
+      setCurrentIndex((prevIndex) => prevIndex + 1)
+    }
+  }, [currentIndex, factHistory.length])
 
   return (
-    <CatRandomFactContext.Provider value={{ randomFact, generateRandomFact }}>
+    <CatRandomFactContext.Provider
+      value={{
+        randomFact: factHistory[currentIndex] || '',
+        generateRandomFact,
+        goToPreviousFact,
+        goToNextFact,
+        hasPreviousFact: currentIndex > 0,
+        hasNextFact: currentIndex < factHistory.length - 1,
+      }}
+    >
       {children}
     </CatRandomFactContext.Provider>
   )

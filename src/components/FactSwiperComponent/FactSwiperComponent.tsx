@@ -6,6 +6,7 @@ import SwiperCore from 'swiper'
 import { Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 import * as S from './styles'
 import FactCardComponent from '@components/FactCardComponent/FactCardComponent'
 import { fetchAllCatsFacts } from '@/app/api/facts/fetchAllCatsFacts'
@@ -57,21 +58,24 @@ const FactSwiperComponent: React.FC = () => {
 
   return (
     <S.SwiperWrapper>
-      <Swiper
-        spaceBetween={50}
-        slidesPerView={1}
-        pagination={{ clickable: true }}
-      >
-        {chunkedFacts.map((factPage, pageIndex) => (
-          <SwiperSlide key={pageIndex}>
-            <S.CardGridWrapper>
-              {factPage.map((fact, index) => (
-                <FactCardComponent key={index} fact={fact} />
-              ))}
-            </S.CardGridWrapper>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <S.SwiperContainerStyled>
+        <Swiper
+          modules={[Pagination]}
+          spaceBetween={50}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+        >
+          {chunkedFacts.map((factPage, pageIndex) => (
+            <SwiperSlide key={pageIndex}>
+              <S.CardGridWrapper>
+                {factPage.map((fact, index) => (
+                  <FactCardComponent key={index} fact={fact} />
+                ))}
+              </S.CardGridWrapper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </S.SwiperContainerStyled>
     </S.SwiperWrapper>
   )
 }
